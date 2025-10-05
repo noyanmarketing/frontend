@@ -1,0 +1,546 @@
+/* Reset & Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background: #fff;
+}
+
+/* Promo Banner */
+.promo-banner {
+  background: #0033a0;
+  color: white;
+  text-align: center;
+  padding: 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Header */
+.header {
+  background: white;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+}
+
+.nav {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #ff5722;
+}
+
+.search-input {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  width: 220px;
+  outline: none;
+  font-size: 0.9rem;
+  background: #f9f9f9;
+}
+
+/* Hero Section */
+.hero-section {
+  background: white;
+  padding: 3rem 0 4rem;
+}
+
+.hero-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+
+.hero-content .highlight {
+  color: #ff5722;
+}
+
+.hero-content p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.hero-btn {
+  display: inline-block;
+  background: #ff5722;
+  color: white;
+  padding: 0.85rem 1.8rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #e64a19;
+  transform: translateY(-2px);
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+}
+
+/* Section Title ve Products Section aynı kaldı */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  color: #000;
+  padding: 0 3rem;
+}
+
+.products-section {
+  /* Genişlik, en büyük elemanlar ve boşluklar toplamına göre ayarlanmalı */
+  max-width: 1400px; 
+  margin: 3rem auto;
+  padding: 0 3rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 751px 1fr 400px; /* left fixed, middle flexible, right fixed */
+  gap: 20px;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Orta alan: küçük 1x1 kartların düzenleneceği kapsayıcı */
+.middle-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* iki sütunlu küçük kart düzeni */
+  gap: 20px;
+  align-content: start;
+  /* middle-stack grid'te ortadaki 2-3 sütun aralığını kaplayacak şekilde yerleştirilebilir
+     ancak burada akışa bırakıyoruz; gerekirse grid-column ile sınırlandırılabilir. */
+}
+
+/* Orta-stack iç düzenlemeleri */
+.middle-stack .top-small {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 sütun x 2 satır = 4 kart */
+  gap: 20px;
+}
+.middle-stack .bottom-small {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* alt satırda 2 kart yan yana */
+  gap: 20px;
+}
+
+
+/* Product Card Base aynı kaldı */
+.product-card {
+  background: #f5f5f5;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Grid Span Variations - Yeni 6 sütunlu yapıya uyarlandı */
+
+/* 1. Büyük Ana Görsel (Sol) */
+.product-card.span-2x2 {
+  width: 751px;
+  height: 675px;
+  border-radius: 5px;
+}
+/* 2. Küçük 1x1 Kartlar (2x3 Dizi) */
+.product-card.span-1x1 {
+  width: 175px;
+  height: 175px;
+  border-radius: 5px;
+}
+
+.middle-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 175px);
+  grid-auto-rows: 175px;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* 3. Yeni Eklenen Yatay Geniş Kartlar (En Sağda Alt Alta 2 adet) */
+.product-card.span-2x1 {
+  width: 400px;
+  height: 329px;
+  border-radius: 5px;
+}
+
+.right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+/* 4. Alt Satırdaki (Önceki İsteğiniz) Dikey Kartlar */
+.product-card.span-1x2 {
+  grid-column: span 2; /* Alt satırda 2 sütun kaplasınlar */
+  grid-row: span 2; 
+  
+  /* width ve height önceki haliyle kaldı */
+  min-height: 440px; 
+  width: 175px; 
+  border-radius: 5px;
+}
+
+/* Product Image ve Product Info kısımları aynı kaldı */
+
+/* Responsive Design handled later in file */
+
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+}
+
+.product-info-light {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: white;
+  color: #333;
+}
+
+.product-category {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.3rem;
+  opacity: 0.8;
+}
+
+.product-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0.3rem;
+}
+
+/* Two Column Content */
+.two-column-section {
+  max-width: 1400px;
+  margin: 3rem auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.content-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.content-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.content-card-text {
+  padding: 2rem;
+}
+
+.content-card-text h3 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.content-card-text p {
+  color: #666;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Feature Product - Full Width */
+.feature-section {
+  max-width: 1400px;
+  margin: 3rem auto;
+  padding: 0 3rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 10px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: center;
+  overflow: hidden;
+}
+
+.feature-content {
+  padding: 3rem;
+}
+
+.feature-content h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+
+.feature-content p {
+  color: #666;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.feature-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Newsletter Section */
+.newsletter-section {
+  max-width: 1400px;
+  margin: 3rem auto 4rem;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.newsletter-image-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.newsletter-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 400px;
+}
+
+.newsletter-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.newsletter-card h3 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin-bottom: 0.8rem;
+  color: #000;
+  letter-spacing: -0.3px;
+}
+
+.newsletter-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.newsletter-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.newsletter-input:focus {
+  border-color: #333;
+}
+
+.newsletter-btn {
+  background: #000;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.newsletter-btn:hover {
+  background: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .hero-container,
+  .two-column-section,
+  .feature-card,
+  .newsletter-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .product-card.span-2x2 {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-content {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+  
+  .nav {
+    gap: 1.5rem;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .product-card.span-2x2 {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-container,
+  .products-section,
+  .two-column-section,
+  .feature-section,
+  .newsletter-section,
+  .section-title {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-card.span-2x2,
+  .product-card.span-2x1 {
+    grid-column: span 1;
+  }
+  
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Mobil/orta ekranlarda sağ stack'i grid akışına sok ve dikey yerine yatay veya alt sıraya düşür */
+  .right-stack {
+    flex-direction: row;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .right-stack .product-card.span-2x1 {
+    height: 220px;
+    max-width: none;
+    flex: 1 1 50%;
+  }
+}

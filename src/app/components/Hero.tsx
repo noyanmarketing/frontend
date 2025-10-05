@@ -1,79 +1,109 @@
-import Image from "next/image";
 
-// Şimdilik statik veri, API hazır olduğunda burası değişecek
+
+import Image from "next/image";
+import './hero.css';
+import sofa1 from './images/sofa-1.jpg';
+
+// Diziyi görseldeki 10 karta göre düzenliyoruz.
 const products = [
-  { id: 1, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-1.jpg" },
-  { id: 2, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-2.jpg" },
-  { id: 3, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-3.jpg" },
-  { id: 4, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-4.jpg" },
-  { id: 5, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-5.jpg" },
-  { id: 6, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-6.jpg" },
-  { id: 7, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-7.jpg" },
-  { id: 8, name: "Sofa", brand: "Mauris At Blandit Orci.", image: "/sofa-8.jpg" },
+  { id: 1, name: "Sofa (2x2)", brand: "Mauris At Blandit Orci.", image: sofa1 }, // 1. BÜYÜK (index 0)
+  { id: 2, name: "Small 1", brand: "Mauris At Blandit Orci.", image: sofa1 }, // KÜÇÜK 1 (index 1)
+  { id: 3, name: "Small 2", brand: "Mauris At Blandit Orci.", image: sofa1 }, // KÜÇÜK 2 (index 2)
+  { id: 4, name: "Small 3", brand: "Mauris At Blandit Orci.", image: sofa1 }, // KÜÇÜK 3 (index 3)
+  { id: 5, name: "Small 4", brand: "Mauris At Blandit Orci.", image: sofa1 }, // KÜÇÜK 4 (index 4)
+  { id: 6, name: "Small 5", brand: "Mauris At Blandit Orci.", image: sofa1 }, // KÜÇÜK 5 (index 5)
+  { id: 7, name: "Small 6", brand: "Mauris At Blandit Orci.", image: sofa1 }, // KÜÇÜK 6 (index 6)
+  
+  // Bu 3 kart, görseldeki en sağdaki büyük, geniş ve en alttaki kartlara karşılık geliyor
+  { id: 8, name: "Green Armchair", brand: "Luxury Collection", image: sofa1 }, // BÜYÜK KOLTUK (index 7, span-1x3)
+  { id: 9, name: "Wooden Chair", brand: "Classic Design", image: sofa1 }, // GENİŞ KART (index 8, span-2x1)
+  { id: 10, name: "Metal Chair", brand: "Industrial Look", image: sofa1 }, // ALT KART (index 9, span-2x1)
+  
+  // Eski fazla kartlar (index 10 ve 11) kaldırılmıştır.
 ];
+
+// Yardımcı bileşen aynı kalıyor
+const ProductCard: React.FC<{ product: typeof products[0]; className: string; price?: string }> = ({ product, className, price }) => {
+    // Büyük kartlar için 'product-info-dark'
+    const infoClass = className.includes('span-2x2') || className.includes('span-2x1') ? 'product-info-dark' : 'product-info';
+    
+    return (
+        <div className={`product-card ${className}`}>
+            <Image
+                src={product.image}
+                alt={product.name}
+                fill
+                className="object-cover"
+            />
+            <div className={infoClass}>
+                <p className="product-category">{product.name}</p>
+                <p className="product-name">{product.brand}</p>
+                {price && <p className="product-price">{price}</p>}
+            </div>
+        </div>
+    );
+};
 
 export default function Hero() {
   return (
-    <>
-      {/* Hero Section */}
-      <section className="flex flex-col md:flex-row items-center justify-between px-8 py-12">
-        {/* Sol */}
-        <div className="max-w-lg">
-          <h1 className="text-3xl font-bold leading-snug mb-4">
-            MAECENAS A ARCU NULLA. <br />
-            PELLENTESQUE QUIS <span className="text-orange-600">LECTUS</span>{" "}
-            <span className="text-orange-600">CONVALLIS</span>
-          </h1>
-          <p className="text-gray-600 mb-6">
-            Nunc Dolor Mauris, Suscipit Vitae Fringilla Eget, Aliquet Ac Tortor.
-            Vivamus Pulvinar Pharetra Felis In Dignissim. Vivamus In Dignissim
-            Magna, Ac Tincidunt Sapien
-          </p>
-          <button className="bg-orange-600 text-white px-6 py-2 rounded font-semibold hover:bg-orange-700">
-            Pellentesque Quis Lectus
-          </button>
-        </div>
+    <div>
+      <section className="hero-section">
+        <div className="hero-container">
+          <div className="hero-content">
+            <h1>
+              MAECENAS A ARCU NULLA.
+              <br />
+              PELLENTESQUE QUIS <span className="highlight">LECTUS CONVALLIS</span>
+            </h1>
+            <p>
+              Nunc Dolor Mauris, Suscipit Vitae Fringilla Eget, Aliquet Ac Tortor.
+              Vivamus Pulvinar Pharetra Felis In Dignissim. Vivamus In Dignissim
+              Magna, Ac Tincidunt Sapien
+            </p>
+            <a className="hero-btn" href="#">Pellentesque Quis Lectus</a>
+          </div>
 
-        {/* Sağ */}
-        <div className="mt-8 md:mt-0 md:ml-8">
-          <Image
-            src="/hero-img.png"
-            alt="Hero Görseli"
-            width={400}
-            height={400}
-            className="rounded-lg"
-          />
+          <div className="hero-image-wrapper" style={{ position: 'relative', width: 360, height: 360 }}>
+            <Image src="/colorful-sofa.jpg" alt="Hero visual" fill className="hero-image" />
+          </div>
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="px-8 py-12 bg-gray-50">
-        <h2 className="text-3xl font-bold mb-8">Vestibulum Imperdiet Enim</h2>
+      {/* Products Section - GÖRSELDEKİ 10 KARTA GÖRE TEMİZLENMİŞ KISIM */}
+      <div className="products-section">
+        <h2 className="section-title">Vestibulum Imperdiet Enim</h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="relative h-64 bg-gray-200">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="font-bold text-lg mb-1">{product.name}</h3>
-                <p className="text-gray-600 text-sm">{product.brand}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+        <div className="product-grid">
+            {/* 1. KART: BÜYÜK KART (Sol) - span-2x2 (index 0) */}
+            <ProductCard key={products[0].id} product={products[0]} className="span-2x2" />
 
-      {/* Content Section with Images */}
+            {/* Orta bölge: küçük 1x1 kartlar (6 adet) - 2 sütun x 3 satır */}
+            <div className="middle-stack">
+              {products.slice(1, 7).map((product, index) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  className="span-1x1"
+                  price={`$${100 + index * 10}`}
+                />
+              ))}
+            </div>
+
+            {/* Sağ kolon: 9-10. KARTLAR - ekranın en sağında üst üste */}
+            <div className="right-stack">
+              <ProductCard key={products[8].id} product={products[8]} className="span-2x1" price="$250" />
+              <ProductCard key={products[9].id} product={products[9]} className="span-2x1" price="$280" />
+            </div>
+            
+            {/* NOT: Görseldeki o boş gri kart (yer tutucu) artık tamamen kaldırılmıştır.
+               Grid akışında boşluk oluşursa, bu sizin CSS'inizdeki 8 sütunluk 
+               tanımın, bu kartların boyutlarını tam olarak dolduramadığı anlamına gelir. */}
+            
+        </div>
+      </div>
+
+      {/* Content Section, Featured Product ve Footer kısımları aynı kaldı... */}
+      {/* ... */}
       <section className="px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-16">
           <div className="relative h-96">
@@ -104,7 +134,6 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Featured Product Section */}
       <section className="px-8 py-12 bg-white border-4 border-blue-500 mx-8 rounded-lg mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-12">
           <div className="relative h-80">
@@ -137,7 +166,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Newsletter Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center bg-gray-50 p-8 rounded-lg">
           <div className="relative h-48">
             <Image
@@ -172,7 +200,6 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-gray-900 text-white px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
@@ -212,23 +239,6 @@ export default function Hero() {
           <p>&copy; 2025 Furniture Store. All rights reserved.</p>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
-
-// API hazır olduğunda şöyle kullanılacak:
-/*
-async function getProducts() {
-  const res = await fetch('https://your-api.com/products');
-  if (!res.ok) throw new Error('Failed to fetch products');
-  return res.json();
-}
-
-export default async function Hero() {
-  const products = await getProducts();
-  
-  return (
-    // ... aynı JSX
-  );
-}
-*/
