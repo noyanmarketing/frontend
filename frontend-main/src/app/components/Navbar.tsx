@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-
+{/* düzenli bir şekilde toplanıp tıklandığında sayfalara gider */}
   const navLinks = [
     { href: "/", label: "Anasayfa" },
     { href: "/about", label: "Hakkında" },
